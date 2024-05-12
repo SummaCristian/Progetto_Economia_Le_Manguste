@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Progetto Economia</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_analysis">Analisi</string>
+    <string name="title_shop">Shop</string>
+</resources>
