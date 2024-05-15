@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -16,6 +17,18 @@ public class DashboardFragment extends Fragment {
 
 private FragmentDashboardBinding binding;
 
+private SmallFragment weatherFragment;
+private SmallFragment countdownFragment;
+private SmallFragment windSpeedFragment;
+private SmallFragment humidityFragment;
+private SmallFragment airQualityFragment;
+private SmallFragment soilPhFragment;
+private SmallFragment soilTemperatureFragment;
+private SmallFragment soilNutrientFragment;
+private SmallFragment soilHumidityFragment;
+private SmallFragment co2ConcentrationFragment;
+private SmallFragment sunExpositionFragment;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
         DashboardViewModel dashboardViewModel =
@@ -24,64 +37,81 @@ private FragmentDashboardBinding binding;
     binding = FragmentDashboardBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
 
-        SmallFragment weatherFragment = new SmallFragment();
+        weatherFragment = new SmallFragment();
+        weatherFragment.setType(SensorType.WEATHER);
         getChildFragmentManager().beginTransaction()
                 .replace(R.id.weather_fragment, weatherFragment)
                 .commit();
 
-        SmallFragment countdownFragment = new SmallFragment();
+        countdownFragment = new SmallFragment();
+        countdownFragment.setType(SensorType.COUNTDOWN);
         getChildFragmentManager().beginTransaction()
                 .replace(R.id.countdown_fragment, countdownFragment)
                 .commit();
 
-        SmallFragment windSpeedFragment = new SmallFragment();
+        windSpeedFragment = new SmallFragment();
+        windSpeedFragment.setType(SensorType.WIND_SPEED);
         getChildFragmentManager().beginTransaction()
                 .replace(R.id.wind_speed_fragment, windSpeedFragment)
                 .commit();
 
-        SmallFragment humidityFragment = new SmallFragment();
+        humidityFragment = new SmallFragment();
+        humidityFragment.setType(SensorType.HUMIDITY);
         getChildFragmentManager().beginTransaction()
                 .replace(R.id.humidity_fragment, humidityFragment)
                 .commit();
 
-        SmallFragment airQualityFragment = new SmallFragment();
+        airQualityFragment = new SmallFragment();
+        airQualityFragment.setType(SensorType.AIR_QUALITY);
         getChildFragmentManager().beginTransaction()
                 .replace(R.id.air_quality_fragment, airQualityFragment)
                 .commit();
 
-        SmallFragment soilPhFragment = new SmallFragment();
+        soilPhFragment = new SmallFragment();
+        soilPhFragment.setType(SensorType.SOIL_PH);
         getChildFragmentManager().beginTransaction()
                 .replace(R.id.soil_pH_fragment, soilPhFragment)
                 .commit();
 
-        SmallFragment soilTemperatureFragment = new SmallFragment();
+        soilTemperatureFragment = new SmallFragment();
+        soilTemperatureFragment.setType(SensorType.SOIL_TEMPERATURE);
         getChildFragmentManager().beginTransaction()
                 .replace(R.id.soil_temperature_fragment, soilTemperatureFragment)
                 .commit();
 
-        SmallFragment soilNutrientFragment = new SmallFragment();
+        soilNutrientFragment = new SmallFragment();
+        soilNutrientFragment.setType(SensorType.SOIL_NUTRIENTS);
         getChildFragmentManager().beginTransaction()
                 .replace(R.id.soil_nutrient_fragment, soilNutrientFragment)
                 .commit();
 
-        SmallFragment soilHumidityFragment = new SmallFragment();
+        soilHumidityFragment = new SmallFragment();
+        soilHumidityFragment.setType(SensorType.SOIL_HUMIDITY);
         getChildFragmentManager().beginTransaction()
                 .replace(R.id.soil_humidity_fragment, soilHumidityFragment)
                 .commit();
 
-        SmallFragment co2ConcentrationFragment = new SmallFragment();
+        co2ConcentrationFragment = new SmallFragment();
+        co2ConcentrationFragment.setType(SensorType.CO2_CONCENTRATION);
         getChildFragmentManager().beginTransaction()
                 .replace(R.id.co2_concentration_fragment, co2ConcentrationFragment)
                 .commit();
 
-        SmallFragment sunExpositionFragment = new SmallFragment();
+        sunExpositionFragment = new SmallFragment();
+        sunExpositionFragment.setType(SensorType.SUN_EXPOSITION);
         getChildFragmentManager().beginTransaction()
                 .replace(R.id.sun_exposition_fragment, sunExpositionFragment)
                 .commit();
 
-
         return root;
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+    }
+
+
 
 @Override
     public void onDestroyView() {
