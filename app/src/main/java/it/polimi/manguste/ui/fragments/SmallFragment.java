@@ -190,7 +190,7 @@ public class SmallFragment extends Fragment {
                 case COUNTDOWN -> setData("Conto alla rovescia", "-5 giorni", SensorLevel.HIGH);
                 case WIND_SPEED -> setData("Velocità del vento", "5 Km/h", SensorLevel.HIGH);
                 case HUMIDITY -> setData("Umidità", "56%", SensorLevel.HIGH);
-                case AIR_QUALITY -> setData("Qualità dell'aria", "Moderata", SensorLevel.HIGH);
+                case AIR_QUALITY -> setData("Qualità dell'aria", "Moderata", SensorLevel.LOW);
                 case SOIL_PH -> setData("pH del terreno", "7.4", SensorLevel.MEDIUM_HIGH);
                 case SOIL_TEMPERATURE -> setData("Temperatura suolo", "20°C", SensorLevel.HIGH);
                 case SOIL_NUTRIENTS -> setData("Nutrienti nel suolo", "Ottimo", SensorLevel.HIGH);
