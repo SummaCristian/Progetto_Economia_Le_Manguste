@@ -1,5 +1,6 @@
 package it.polimi.manguste.ui.shop;
 
+import androidx.cardview.widget.CardView;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.res.Configuration;
@@ -17,15 +18,19 @@ import android.widget.TextView;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
+import it.polimi.manguste.Listener;
+import it.polimi.manguste.Observable;
 import it.polimi.manguste.R;
 import it.polimi.manguste.ui.dashboard.SensorLevel;
 import it.polimi.manguste.ui.dashboard.SensorType;
 
-public class BigFragment extends Fragment {
+public class BigFragment extends Fragment implements Observable {
     // Attributes
     private SensorType type;
 
+    private ImageView editButton;
     // Title texts
     private TextView titleTxt;
     private TextView maxTxt;
@@ -61,7 +66,10 @@ public class BigFragment extends Fragment {
     private TextView day6Name;
     private TextView day7Name;
 
+    private CardView parent;
     private BigFragmentViewModel viewModel;
+
+    private final ArrayList<Listener> listeners = new ArrayList<>();
 
 
     // Constructor Method
@@ -249,6 +257,13 @@ public class BigFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         // Retrieve data and display it here
         bind();
+        parent.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                notifyListeners();
+                return true;
+            }
+        });
         setDays();
 
         setup();
@@ -268,6 +283,7 @@ public class BigFragment extends Fragment {
     }
 
     private void bind() {
+        parent = getView().findViewById(R.id.fragment_big_parent);
         // Title texts
         titleTxt = getView().findViewById(R.id.fragment_title);
         maxTxt = getView().findViewById(R.id.max_temperature);
@@ -298,6 +314,9 @@ public class BigFragment extends Fragment {
         day5Name = getView().findViewById(R.id.day_5);
         day6Name = getView().findViewById(R.id.day_6);
         day7Name = getView().findViewById(R.id.day_7);
+
+        editButton = getView().findViewById(R.id.edit_button);
+        editButton.setVisibility(View.INVISIBLE);
     }
 
     private void setDays() {
@@ -368,5 +387,22 @@ public class BigFragment extends Fragment {
             }
         }
 
+    }
+
+    @Override
+    public void setListener(Listener l) {
+        listeners.add(l);
+    }
+
+    @Override
+    public void removeListener(Listener l) {
+        listeners.remove(l);
+    }
+
+    @Override
+    public void notifyListeners() {
+        for (Listener l: listeners) {
+            l.onEvent();
+        }
     }
 }

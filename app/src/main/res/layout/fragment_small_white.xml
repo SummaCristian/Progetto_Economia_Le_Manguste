@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_small_parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -36,6 +37,16 @@
             app:layout_constraintTop_toTopOf="parent"
             android:scaleType="centerInside"
             />
+
+        <ImageView
+            android:id="@+id/edit_button"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/edit_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginEnd="15dp"/>
 
         <TextView
             android:id="@+id/fragment_description"

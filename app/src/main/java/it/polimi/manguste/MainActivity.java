@@ -7,8 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.window.OnBackInvokedDispatcher;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -22,6 +26,8 @@ import it.polimi.manguste.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
 private ActivityMainBinding binding;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +58,6 @@ private ActivityMainBinding binding;
             window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
             navView.setItemActiveIndicatorColor(ColorStateList.valueOf(Color.parseColor("#385f1c")));
         }
-
-
     }
 
 }
