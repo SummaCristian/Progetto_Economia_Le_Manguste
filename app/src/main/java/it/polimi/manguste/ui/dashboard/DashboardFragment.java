@@ -12,12 +12,13 @@ import androidx.lifecycle.ViewModelProvider;
 import it.polimi.manguste.R;
 import it.polimi.manguste.databinding.FragmentDashboardBinding;
 import it.polimi.manguste.ui.fragments.SmallFragment;
+import it.polimi.manguste.ui.shop.BigFragment;
 
 public class DashboardFragment extends Fragment {
 
 private FragmentDashboardBinding binding;
 
-private SmallFragment weatherFragment;
+private BigFragment weatherFragment;
 private SmallFragment countdownFragment;
 private SmallFragment windSpeedFragment;
 private SmallFragment humidityFragment;
@@ -37,7 +38,7 @@ private SmallFragment sunExpositionFragment;
     binding = FragmentDashboardBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
 
-        weatherFragment = new SmallFragment();
+        weatherFragment = new BigFragment();
         weatherFragment.setType(SensorType.WEATHER);
         getChildFragmentManager().beginTransaction()
                 .replace(R.id.weather_fragment, weatherFragment)

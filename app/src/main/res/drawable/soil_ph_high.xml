@@ -17,7 +17,7 @@
         <item android:offset="0.1" android:color="#FFFF5106"/>
         <item android:offset="0.2" android:color="#FFFFF506"/>
         <item android:offset="0.5" android:color="#FF52ED09"/>
-        <item android:offset="0.7" android:color="#FFFFF506"/>
+        <item android:offset="0.8" android:color="#FFFFF506"/>
         <item android:offset="0.9" android:color="#FFFF5106"/>
         <item android:offset="1" android:color="#FFFF0000"/>
       </gradient>
