@@ -7,7 +7,9 @@ import androidx.lifecycle.ViewModel;
 import it.polimi.manguste.ui.dashboard.SensorType;
 
 public class BigFragmentViewModel extends ViewModel {
-    private MutableLiveData<String> title = new MutableLiveData<>();
+    private MutableLiveData<String> todayTemp = new MutableLiveData<>();
+    private MutableLiveData<String> minTemp = new MutableLiveData<>();
+    private MutableLiveData<String> maxTemp = new MutableLiveData<>();
     private MutableLiveData<Integer> resID = new MutableLiveData<>();
     private MutableLiveData<SensorType> type = new MutableLiveData<>();
     private MutableLiveData<String> temp1 = new MutableLiveData<>();
@@ -34,12 +36,28 @@ public class BigFragmentViewModel extends ViewModel {
         this.type.setValue(type);
     }
 
-    public LiveData<String> getTitle() {
-        return title;
+    public LiveData<String> getTodayTemp() {
+        return todayTemp;
     }
 
-    public void setTitle(String title) {
-        this.title.setValue(title);
+    public void setTodayTemp(String todayTemp) {
+        this.todayTemp.setValue(todayTemp);
+    }
+
+    public LiveData<String> getMinTemp() {
+        return minTemp;
+    }
+
+    public void setMinTemp(String temp) {
+        this.minTemp.setValue(temp);
+    }
+
+    public LiveData<String> getMaxTemp() {
+        return maxTemp;
+    }
+
+    public void setMaxTemp(String temp) {
+        this.maxTemp.setValue(temp);
     }
 
     public LiveData<Integer> getResID() {
@@ -50,127 +68,119 @@ public class BigFragmentViewModel extends ViewModel {
         this.resID.setValue(resID);
     }
 
-    public void setTitle(MutableLiveData<String> title) {
-        this.title = title;
+    public void setTitle(String title) {
+        this.todayTemp.setValue(title);
     }
 
-    public void setResID(MutableLiveData<Integer> resID) {
-        this.resID = resID;
-    }
-
-    public void setType(MutableLiveData<SensorType> type) {
-        this.type = type;
-    }
-
-    public MutableLiveData<String> getTemp1() {
+    public LiveData<String> getTemp1() {
         return temp1;
     }
 
-    public void setTemp1(MutableLiveData<String> temp1) {
-        this.temp1 = temp1;
+    public void setTemp1(String temp1) {
+        this.temp1.setValue(temp1);
     }
 
-    public MutableLiveData<String> getTemp2() {
+    public LiveData<String> getTemp2() {
         return temp2;
     }
 
-    public void setTemp2(MutableLiveData<String> temp2) {
-        this.temp2 = temp2;
+    public void setTemp2(String temp2) {
+        this.temp2.setValue(temp2);
     }
 
-    public MutableLiveData<String> getTemp3() {
+    public LiveData<String> getTemp3() {
         return temp3;
     }
 
-    public void setTemp3(MutableLiveData<String> temp3) {
-        this.temp3 = temp3;
+    public void setTemp3(String temp3) {
+        this.temp3.setValue(temp3);
     }
 
-    public MutableLiveData<String> getTemp4() {
+    public LiveData<String> getTemp4() {
         return temp4;
     }
 
-    public void setTemp4(MutableLiveData<String> temp4) {
-        this.temp4 = temp4;
+    public void setTemp4(String temp4) {
+        this.temp4.setValue(temp4);
     }
 
-    public MutableLiveData<String> getTemp5() {
+    public LiveData<String> getTemp5() {
         return temp5;
     }
 
-    public void setTemp5(MutableLiveData<String> temp5) {
-        this.temp5 = temp5;
+    public void setTemp5(String temp5) {
+        this.temp5.setValue(temp5);
     }
 
-    public MutableLiveData<String> getTemp6() {
+    public LiveData<String> getTemp6() {
         return temp6;
     }
 
-    public void setTemp6(MutableLiveData<String> temp6) {
-        this.temp6 = temp6;
+    public void setTemp6(String temp6) {
+        this.temp6.setValue(temp6);
     }
 
-    public MutableLiveData<String> getTemp7() {
+    public LiveData<String> getTemp7() {
         return temp7;
     }
 
-    public void setTemp7(MutableLiveData<String> temp7) {
-        this.temp7 = temp7;
+    public void setTemp7(String temp7) {
+        this.temp7.setValue(temp7);
     }
 
-    public MutableLiveData<Integer> getIcon1() {
+    public LiveData<Integer> getIcon1() {
         return icon1;
     }
 
-    public void setIcon1(MutableLiveData<Integer> icon1) {
-        this.icon1 = icon1;
+    public void setIcon1(int icon1) {
+        this.icon1.setValue(icon1);
     }
 
-    public MutableLiveData<Integer> getIcon2() {
+    public LiveData<Integer> getIcon2() {
         return icon2;
     }
 
-    public void setIcon2(MutableLiveData<Integer> icon2) {
-        this.icon2 = icon2;
+    public void setIcon2(int icon2) {
+        this.icon2.setValue(icon2);
     }
 
-    public MutableLiveData<Integer> getIcon3() {
+    public LiveData<Integer> getIcon3() {
         return icon3;
     }
 
-    public void setIcon3(MutableLiveData<Integer> icon3) {
-        this.icon3 = icon3;
+    public void setIcon3(int icon3) {
+        this.icon3.setValue(icon3);
     }
 
-    public MutableLiveData<Integer> getIcon4() {
+    public LiveData<Integer> getIcon4() {
         return icon4;
     }
 
-    public void setIcon4(MutableLiveData<Integer> icon4) {
-        this.icon4 = icon4;
+    public void setIcon4(int icon4) {
+        this.icon4.setValue(icon4);
     }
 
-    public MutableLiveData<Integer> getIcon5() {
+    public LiveData<Integer> getIcon5() {
         return icon5;
     }
 
-    public void setIcon5(MutableLiveData<Integer> icon5) {
-        this.icon5 = icon5;
+    public void setIcon5(int icon5) {
+        this.icon5.setValue(icon5);
     }
 
-    public MutableLiveData<Integer> getIcon6() {
+    public LiveData<Integer> getIcon6() {
         return icon6;
     }
 
-    public void setIcon6(MutableLiveData<Integer> icon6) {
-        this.icon6 = icon6;
+    public void setIcon6(int icon6) {
+        this.icon6.setValue(icon6);
     }
 
-    public MutableLiveData<Integer> getIcon7() {
+    public LiveData<Integer> getIcon7() {
         return icon7;
     }
 
-    public void setIcon7(MutableLiveData<Integer> icon7) {
-        this.icon7 = icon7;
+    public void setIcon7(int icon7) {
+        this.icon7.setValue(icon7);
     }
 }

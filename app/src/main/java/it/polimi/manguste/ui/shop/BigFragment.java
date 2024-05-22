@@ -17,12 +17,10 @@ import android.widget.TextView;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.util.Objects;
 
 import it.polimi.manguste.R;
 import it.polimi.manguste.ui.dashboard.SensorLevel;
 import it.polimi.manguste.ui.dashboard.SensorType;
-import it.polimi.manguste.ui.fragments.SmallFragmentViewModel;
 
 public class BigFragment extends Fragment {
     // Attributes
@@ -78,19 +76,92 @@ public class BigFragment extends Fragment {
         this.type = type;
     }
 
-    public void setData(String value, String description, SensorLevel level) {
+    public void setTodayData(String todayTemp, String minTemp, String maxTemp, SensorLevel level) {
         if (null != type) {
             viewModel.setType(type);
         }
-        viewModel.setTitle(value);
-        switch (Objects.requireNonNull(viewModel.getType().getValue())) {
-            case WEATHER -> {
+        viewModel.setTodayTemp(todayTemp);
+        viewModel.setMaxTemp(maxTemp);
+        viewModel.setMinTemp(minTemp);
+        switch (level) {
+            case MIN -> viewModel.setResID(R.drawable.weather_stormy);
+            case LOW -> viewModel.setResID(R.drawable.weather_rainy);
+            case MEDIUM_LOW -> viewModel.setResID(R.drawable.weather_completely_cloudy);
+            case MEDIUM_HIGH -> viewModel.setResID(R.drawable.weather_cloudy);
+            case HIGH, MAX -> viewModel.setResID(R.drawable.weather_sunny);
+        }
+    }
+
+    public void setFutureData(int day, String temperature, SensorLevel level) {
+        switch (day) {
+            case 1 -> {
+                viewModel.setTemp1(temperature);
                 switch (level) {
-                    case MIN -> viewModel.setResID(R.drawable.weather_stormy);
-                    case LOW -> viewModel.setResID(R.drawable.weather_rainy);
-                    case MEDIUM_LOW -> viewModel.setResID(R.drawable.weather_completely_cloudy);
-                    case MEDIUM_HIGH -> viewModel.setResID(R.drawable.weather_cloudy);
-                    case HIGH, MAX -> viewModel.setResID(R.drawable.weather_sunny);
+                    case MIN -> viewModel.setIcon1(R.drawable.weather_stormy);
+                    case LOW -> viewModel.setIcon1(R.drawable.weather_rainy);
+                    case MEDIUM_LOW -> viewModel.setIcon1(R.drawable.weather_completely_cloudy);
+                    case MEDIUM_HIGH -> viewModel.setIcon1(R.drawable.weather_cloudy);
+                    case HIGH, MAX -> viewModel.setIcon1(R.drawable.weather_sunny);
+                }
+            }
+            case 2 -> {
+                viewModel.setTemp2(temperature);
+                switch (level) {
+                    case MIN -> viewModel.setIcon2(R.drawable.weather_stormy);
+                    case LOW -> viewModel.setIcon2(R.drawable.weather_rainy);
+                    case MEDIUM_LOW -> viewModel.setIcon2(R.drawable.weather_completely_cloudy);
+                    case MEDIUM_HIGH -> viewModel.setIcon2(R.drawable.weather_cloudy);
+                    case HIGH, MAX -> viewModel.setIcon2(R.drawable.weather_sunny);
+                }
+            }
+            case 3 -> {
+                viewModel.setTemp3(temperature);
+                switch (level) {
+                    case MIN -> viewModel.setIcon3(R.drawable.weather_stormy);
+                    case LOW -> viewModel.setIcon3(R.drawable.weather_rainy);
+                    case MEDIUM_LOW -> viewModel.setIcon3(R.drawable.weather_completely_cloudy);
+                    case MEDIUM_HIGH -> viewModel.setIcon3(R.drawable.weather_cloudy);
+                    case HIGH, MAX -> viewModel.setIcon3(R.drawable.weather_sunny);
+                }
+            }
+            case 4 -> {
+                viewModel.setTemp4(temperature);
+                switch (level) {
+                    case MIN -> viewModel.setIcon4(R.drawable.weather_stormy);
+                    case LOW -> viewModel.setIcon4(R.drawable.weather_rainy);
+                    case MEDIUM_LOW -> viewModel.setIcon4(R.drawable.weather_completely_cloudy);
+                    case MEDIUM_HIGH -> viewModel.setIcon4(R.drawable.weather_cloudy);
+                    case HIGH, MAX -> viewModel.setIcon4(R.drawable.weather_sunny);
+                }
+            }
+            case 5 -> {
+                viewModel.setTemp5(temperature);
+                switch (level) {
+                    case MIN -> viewModel.setIcon5(R.drawable.weather_stormy);
+                    case LOW -> viewModel.setIcon5(R.drawable.weather_rainy);
+                    case MEDIUM_LOW -> viewModel.setIcon5(R.drawable.weather_completely_cloudy);
+                    case MEDIUM_HIGH -> viewModel.setIcon5(R.drawable.weather_cloudy);
+                    case HIGH, MAX -> viewModel.setIcon5(R.drawable.weather_sunny);
+                }
+            }
+            case 6 -> {
+                viewModel.setTemp6(temperature);
+                switch (level) {
+                    case MIN -> viewModel.setIcon6(R.drawable.weather_stormy);
+                    case LOW -> viewModel.setIcon6(R.drawable.weather_rainy);
+                    case MEDIUM_LOW -> viewModel.setIcon6(R.drawable.weather_completely_cloudy);
+                    case MEDIUM_HIGH -> viewModel.setIcon6(R.drawable.weather_cloudy);
+                    case HIGH, MAX -> viewModel.setIcon6(R.drawable.weather_sunny);
+                }
+            }
+            case 7 -> {
+                viewModel.setTemp7(temperature);
+                switch (level) {
+                    case MIN -> viewModel.setIcon7(R.drawable.weather_stormy);
+                    case LOW -> viewModel.setIcon7(R.drawable.weather_rainy);
+                    case MEDIUM_LOW -> viewModel.setIcon7(R.drawable.weather_completely_cloudy);
+                    case MEDIUM_HIGH -> viewModel.setIcon7(R.drawable.weather_cloudy);
+                    case HIGH, MAX -> viewModel.setIcon7(R.drawable.weather_sunny);
                 }
             }
         }
@@ -112,11 +183,64 @@ public class BigFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         viewModel = new ViewModelProvider(this).get(BigFragmentViewModel.class);
-        viewModel.getTitle().observe(this, title -> {
+        // Today's Temperature
+        viewModel.getTodayTemp().observe(this, title -> {
             titleTxt.setText(title);
         });
+        // Big Icon
         viewModel.getResID().observe(this, resID -> {
             icon.setImageResource(resID);
+        });
+        // Max and Min Temperature
+        viewModel.getMaxTemp().observe(this, temp -> {
+            maxTxt.setText(temp);
+        });
+        viewModel.getMinTemp().observe(this, temp -> {
+            minTxt.setText(temp);
+        });
+        // Future Days Temperatures
+        viewModel.getTemp1().observe(this, temp -> {
+            day1Temp.setText(temp);
+        });
+        viewModel.getTemp2().observe(this, temp -> {
+            day2Temp.setText(temp);
+        });
+        viewModel.getTemp3().observe(this, temp -> {
+            day3Temp.setText(temp);
+        });
+        viewModel.getTemp4().observe(this, temp -> {
+            day4Temp.setText(temp);
+        });
+        viewModel.getTemp5().observe(this, temp -> {
+            day5Temp.setText(temp);
+        });
+        viewModel.getTemp6().observe(this, temp -> {
+            day6Temp.setText(temp);
+        });
+        viewModel.getTemp7().observe(this, temp -> {
+            day7Temp.setText(temp);
+        });
+        // Future Days Icons
+        viewModel.getIcon1().observe(this, resID -> {
+            day1Icon.setImageResource(resID);
+        });
+        viewModel.getIcon2().observe(this, resID -> {
+            day2Icon.setImageResource(resID);
+        });
+        viewModel.getIcon3().observe(this, resID -> {
+            day3Icon.setImageResource(resID);
+        });
+        viewModel.getIcon4().observe(this, resID -> {
+            day4Icon.setImageResource(resID);
+        });
+        viewModel.getIcon5().observe(this, resID -> {
+            day5Icon.setImageResource(resID);
+        });
+        viewModel.getIcon6().observe(this, resID -> {
+            day6Icon.setImageResource(resID);
+        });
+        viewModel.getIcon7().observe(this, resID -> {
+            day7Icon.setImageResource(resID);
         });
     }
 
@@ -137,20 +261,9 @@ public class BigFragment extends Fragment {
         } else if (null != viewModel.getType().getValue()) {
             temp = viewModel.getType().getValue();
         }
-        if (null != temp) {
-            switch (temp) {
-                case WEATHER -> setData("24°C", "Max: 25°C, Min: 11°C", SensorLevel.MEDIUM_HIGH);
-                case COUNTDOWN -> setData("Conto alla rovescia", "-5 giorni", SensorLevel.HIGH);
-                case WIND_SPEED -> setData("Velocità del vento", "5 Km/h", SensorLevel.HIGH);
-                case HUMIDITY -> setData("Umidità", "56%", SensorLevel.HIGH);
-                case AIR_QUALITY -> setData("Qualità dell'aria", "Moderata", SensorLevel.LOW);
-                case SOIL_PH -> setData("pH del terreno", "7.4", SensorLevel.MEDIUM_HIGH);
-                case SOIL_TEMPERATURE -> setData("Temperatura suolo", "20°C", SensorLevel.HIGH);
-                case SOIL_NUTRIENTS -> setData("Nutrienti nel suolo", "Ottimo", SensorLevel.HIGH);
-                case SOIL_HUMIDITY -> setData("Umidità del suolo", "Ottima", SensorLevel.HIGH);
-                case CO2_CONCENTRATION -> setData("Concentrazione CO2", "Ottima", SensorLevel.HIGH);
-                case SUN_EXPOSITION -> setData("Esposizione media", "8h 23min", SensorLevel.MAX);
-            }
+        setTodayData("24°C","Min: 11°C", "Max: 25°C", SensorLevel.MEDIUM_HIGH);
+        for (int i = 1; i < 8; i++) {
+            setFutureData(i, "23°", SensorLevel.MAX);
         }
     }
 
